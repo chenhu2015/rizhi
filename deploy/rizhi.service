@@ -1,0 +1,17 @@
+[Unit]
+Description=rizhi paper digest server
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/rizhi
+EnvironmentFile=/home/ubuntu/rizhi/.env
+ExecStart=/home/ubuntu/.venv/bin/uvicorn server.main:app --host 127.0.0.1 --port 8000
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

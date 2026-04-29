@@ -30,10 +30,17 @@ rizhi/
 │   └── interest_profile.yaml   # user interest configuration (edit this to change topics)
 ├── agent/
 │   └── CLAUDE.md               # instructions for the OCI Claude Code session
+├── server/
+│   ├── main.py                 # FastAPI app: serves PWA + Web Push endpoints
+│   ├── push.py                 # Web Push logic (pywebpush + VAPID keys)
+│   └── static/                 # PWA: index.html, app.js, sw.js, manifest.json
+├── results/
+│   └── latest.json             # Claude Code writes here; server reads and pushes
 ├── storage/
 │   └── seen_papers.db          # SQLite, prevents duplicate notifications
 ├── deploy/
-│   ├── rizhi.service           # systemd unit file
+│   ├── rizhi.service           # systemd unit for FastAPI server
+│   ├── nginx.conf              # reverse proxy + rate limiting config
 │   └── setup.sh                # one-shot OCI setup script
 ├── config.yaml                 # scan schedule, sources, score threshold
 ├── requirements.txt
@@ -51,4 +58,6 @@ rizhi/
 ## Key Config Files
 
 - `scanner/interest_profile.yaml` — topics, keywords, authors, score threshold
-- `config.yaml` — scan interval, max papers per run, notification settings
+- `config.yaml` — scan interval, max papers per run, score threshold
+- `deploy/nginx.conf` — reverse proxy, rate limiting, TLS config
+- `results/latest.json` — written by Claude Code after each scan; read by FastAPI server

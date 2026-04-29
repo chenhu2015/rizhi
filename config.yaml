@@ -1,0 +1,18 @@
+scan:
+  schedule: "06:00"          # daily run time (OCI VM local time, 24h)
+  days_back: 1               # fetch papers from the last N days
+  max_results_arxiv: 100     # max papers to fetch per arxiv query
+  max_results_s2: 20         # max papers to fetch from Semantic Scholar
+
+sources:
+  arxiv: true
+  semantic_scholar: true
+
+storage:
+  db_path: storage/seen_papers.db
+  results_dir: results
+
+vault:
+  path: ../papers-vault       # path to papers-vault repo on OCI VM (relative to rizhi/)
+  auto_push: true
+  author_email: ubuntu@rizhi  # git commit author email for vault commits

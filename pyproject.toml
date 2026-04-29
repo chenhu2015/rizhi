@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rizhi"
+version = "0.1.0"
+description = "Daily research paper digest service"
+requires-python = ">=3.10"
+dependencies = [
+    "httpx>=0.27",
+    "feedparser>=6.0",
+    "pyyaml>=6.0",
+    "fastapi>=0.111",
+    "uvicorn[standard]>=0.30",
+    "pywebpush>=2.0",
+    "python-dotenv>=1.0",
+    "aiofiles>=23.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.4",
+    "httpx>=0.27",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["scanner*", "server*"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"

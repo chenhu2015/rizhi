@@ -1,0 +1,24 @@
+topics:
+  - reinforcement learning
+  - agentic RL
+  - RL training
+  - multimodal models
+  - vision language models
+
+keywords:
+  - RLHF
+  - RLAIF
+  - PPO
+  - reward model
+  - agentic
+  - tool use
+  - multimodal
+  - vision-language
+  - VLM
+  - LLM agent
+  - GRPO
+
+authors: []  # add specific researchers to follow, e.g. "Ilya Sutskever"
+
+min_score: 0.7          # relevance threshold (0.0–1.0); papers below this are skipped
+max_papers_per_run: 5   # max papers included in each daily digest
