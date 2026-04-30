@@ -8,7 +8,7 @@ You are running the daily paper digest for rizhi (日知). Complete every step b
 
 ```bash
 cd ~/rizhi
-python -m scanner.fetch > /tmp/rizhi_papers.json
+~/.venv/bin/python -m scanner.fetch > /tmp/rizhi_papers.json
 cat /tmp/rizhi_papers.json
 ```
 
