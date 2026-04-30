@@ -1,3 +1,4 @@
+import time
 from datetime import date, timedelta
 
 import feedparser
@@ -20,8 +21,15 @@ def fetch_recent(days_back: int = 1, max_results: int = 100) -> list[Paper]:
         "sortBy": "submittedDate",
         "sortOrder": "descending",
     }
-    resp = httpx.get(ARXIV_API, params=params, timeout=30)
-    resp.raise_for_status()
+    # arxiv asks for polite delays; retry once on 429 with a 65-second wait
+    for attempt in range(2):
+        resp = httpx.get(ARXIV_API, params=params, timeout=30)
+        if resp.status_code == 429 and attempt == 0:
+            print("arxiv: rate limited, waiting 65 s before retry…")
+            time.sleep(65)
+            continue
+        resp.raise_for_status()
+        break
 
     feed = feedparser.parse(resp.text)
     cutoff = date.today() - timedelta(days=days_back)
