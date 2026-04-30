@@ -8,7 +8,10 @@
       "Bash(git -C ~/papers-vault commit -m *)",
       "Bash(git -C ~/papers-vault push origin main)",
       "Bash(mkdir -p ~/papers-vault/papers/*)",
-      "Bash(mkdir -p ~/papers-vault/digests)"
+      "Bash(mkdir -p ~/papers-vault/digests)",
+      "Write(~/rizhi/results/*)",
+      "Write(~/papers-vault/papers/*)",
+      "Write(~/papers-vault/digests/*)"
     ]
   }
 }
