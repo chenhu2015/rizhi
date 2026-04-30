@@ -22,6 +22,7 @@ Thumbs.db
 *.log
 logs/
 
-# Claude Code
-.claude/
+# Claude Code — ignore everything except project permissions
+.claude/*
+!.claude/settings.json
 production/

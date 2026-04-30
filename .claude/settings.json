@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -m scanner.fetch)",
+      "Bash(python3 -m scanner.fetch > /tmp/rizhi_papers.json)",
+      "Bash(cat /tmp/rizhi_papers.json)",
+      "Bash(curl -s -X POST http://localhost:8000/internal/notify)",
+      "Bash(git -C ~/papers-vault pull --rebase origin main)",
+      "Bash(git -C ~/papers-vault add papers/ digests/)",
+      "Bash(git -C ~/papers-vault commit -m *)",
+      "Bash(git -C ~/papers-vault push origin main)",
+      "Bash(mkdir -p ~/papers-vault/papers/*)",
+      "Bash(mkdir -p ~/papers-vault/digests)"
+    ]
+  }
+}
