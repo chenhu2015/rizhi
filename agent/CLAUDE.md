@@ -8,8 +8,7 @@ You are running the daily paper digest for rizhi (日知). Complete every step b
 
 ```bash
 cd ~/rizhi
-~/.venv/bin/python -m scanner.fetch > /tmp/rizhi_papers.json
-cat /tmp/rizhi_papers.json
+~/.venv/bin/python -m scanner.fetch
 ```
 
 Read the JSON array. If it is empty (`[]`), print "No new papers today." and stop — do not proceed to further steps.

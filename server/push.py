@@ -92,12 +92,26 @@ def send_push_to_all(message: str) -> None:
 # --- VAPID key generation utility ---
 
 def _generate_keys() -> None:
+    import base64
+    from cryptography.hazmat.primitives.serialization import (
+        Encoding, NoEncryption, PrivateFormat, PublicFormat,
+    )
     from py_vapid import Vapid
-    vapid = Vapid()
-    vapid.generate_keys()
+
+    v = Vapid()
+    v.generate_keys()
+
+    priv_b64 = base64.urlsafe_b64encode(
+        v._private_key.private_bytes(Encoding.DER, PrivateFormat.PKCS8, NoEncryption())
+    ).decode().rstrip("=")
+
+    pub_b64 = base64.urlsafe_b64encode(
+        v._public_key.public_bytes(Encoding.X962, PublicFormat.UncompressedPoint)
+    ).decode().rstrip("=")
+
     print("Add these to your .env file:\n")
-    print(f"VAPID_PRIVATE_KEY={vapid.private_key_urlsafe}")
-    print(f"VAPID_PUBLIC_KEY={vapid.public_key_urlsafe}")
+    print(f"VAPID_PRIVATE_KEY={priv_b64}")
+    print(f"VAPID_PUBLIC_KEY={pub_b64}")
 
 
 if __name__ == "__main__":

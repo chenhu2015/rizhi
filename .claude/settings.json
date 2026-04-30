@@ -1,8 +1,7 @@
 {
   "permissions": {
     "allow": [
-      "Bash(~/.venv/bin/python -m scanner.fetch > /tmp/rizhi_papers.json)",
-      "Bash(cat /tmp/rizhi_papers.json)",
+      "Bash(~/.venv/bin/python -m scanner.fetch)",
       "Bash(curl -s -X POST http://localhost:8000/internal/notify)",
       "Bash(git -C ~/papers-vault pull --rebase origin main)",
       "Bash(git -C ~/papers-vault add papers/ digests/)",
