@@ -51,10 +51,10 @@ sudo nginx -t
 sudo systemctl restart nginx
 echo "  nginx: configured"
 
-# --- cron (daily scan at 06:00) ---
-CRON_JOB="0 6 * * * cd $RIZHI_DIR && $HOME/.cache/claude/current/claude --print < agent/CLAUDE.md >> /var/log/rizhi-scan.log 2>&1"
+# --- cron (daily scan at 08:00 UTC, after usage reset at 07:00 UTC) ---
+CRON_JOB="0 8 * * * cd $RIZHI_DIR && $HOME/.local/bin/claude --dangerously-skip-permissions --print < agent/CLAUDE.md >> /var/log/rizhi-scan.log 2>&1"
 ( crontab -l 2>/dev/null | grep -v "rizhi-scan"; echo "$CRON_JOB" ) | crontab -
-echo "  Cron: daily scan at 06:00"
+echo "  Cron: daily scan at 08:00 UTC"
 
 # --- log file ---
 sudo touch /var/log/rizhi-scan.log
