@@ -1,9 +1,9 @@
 #!/bin/bash
 # One-shot setup script for the OCI Ubuntu 22.04 VM.
-# Run as the ubuntu user: bash ~/rizhi/deploy/setup.sh
+# Run as the ubuntu user: bash ~/claude-project/rizhi/deploy/setup.sh
 set -euo pipefail
 
-RIZHI_DIR="$HOME/rizhi"
+RIZHI_DIR="$HOME/claude-project/rizhi"
 VENV_DIR="$HOME/.venv"
 
 echo "=== rizhi setup ==="
@@ -28,11 +28,11 @@ if [ ! -f "$RIZHI_DIR/.env" ]; then
 fi
 
 # --- papers-vault repo ---
-if [ ! -d "$HOME/papers-vault/.git" ]; then
+if [ ! -d "$HOME/claude-project/papers-vault/.git" ]; then
     echo ""
-    echo "  papers-vault not found at ~/papers-vault."
+    echo "  papers-vault not found at ~/claude-project/papers-vault."
     echo "  Clone it manually:"
-    echo "    git clone git@github.com:YOU/papers-vault.git ~/papers-vault"
+    echo "    git clone git@github.com:YOU/papers-vault.git ~/claude-project/papers-vault"
     echo ""
 fi
 
@@ -67,6 +67,6 @@ echo "Next steps:"
 echo "  1. Fill in .env:           nano $RIZHI_DIR/.env"
 echo "  2. Generate VAPID keys:    $VENV_DIR/bin/python -m server.push --generate-keys"
 echo "  3. Set up HTTPS:           sudo certbot --nginx -d your-domain.com"
-echo "  4. Clone papers-vault:     git clone git@github.com:YOU/papers-vault.git ~/papers-vault"
+echo "  4. Clone papers-vault:     git clone git@github.com:YOU/papers-vault.git ~/claude-project/papers-vault"
 echo "  5. Check server status:    sudo systemctl status rizhi"
 echo "  6. Watch scan logs:        tail -f /var/log/rizhi-scan.log"

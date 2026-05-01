@@ -113,13 +113,13 @@ nslookup rizhi.yourdomain.com   # should return your OCI IP
 ### Clone the repo on OCI
 
 ```bash
-ssh OCI-Desktop "git clone https://github.com/YOUR_USERNAME/rizhi.git ~/rizhi"
+ssh OCI-Desktop "mkdir -p ~/claude-project && git clone https://github.com/YOUR_USERNAME/rizhi.git ~/claude-project/rizhi"
 ```
 
 ### Install Python dependencies
 
 ```bash
-ssh OCI-Desktop "python3 -m venv ~/.venv && ~/.venv/bin/pip install -q -e ~/rizhi"
+ssh OCI-Desktop "python3 -m venv ~/.venv && ~/.venv/bin/pip install -q -e ~/claude-project/rizhi"
 ```
 
 ### Run setup.sh
@@ -127,7 +127,7 @@ ssh OCI-Desktop "python3 -m venv ~/.venv && ~/.venv/bin/pip install -q -e ~/rizh
 This installs nginx, certbot (via snap), configures systemd, opens OS firewall ports, and sets up the daily cron job:
 
 ```bash
-ssh OCI-Desktop "bash ~/rizhi/deploy/setup.sh"
+ssh OCI-Desktop "bash ~/claude-project/rizhi/deploy/setup.sh"
 ```
 
 If setup.sh fails mid-way, re-run it — it is safe to run multiple times.
@@ -153,7 +153,7 @@ sudo ln -sf /snap/bin/certbot /usr/bin/certbot
 ### Generate credentials on OCI
 
 ```bash
-ssh OCI-Desktop "cd ~/rizhi && ~/.venv/bin/python -c \"
+ssh OCI-Desktop "cd ~/claude-project/rizhi && ~/.venv/bin/python -c \"
 import secrets, base64
 from cryptography.hazmat.primitives.serialization import Encoding, NoEncryption, PrivateFormat, PublicFormat
 from py_vapid import Vapid
@@ -239,19 +239,19 @@ EOF"
 
 ```bash
 ssh OCI-Desktop "
-git clone git@github-papers-vault:YOUR_USERNAME/papers-vault.git ~/papers-vault
-mkdir -p ~/papers-vault/papers ~/papers-vault/digests
-echo '# papers-vault' > ~/papers-vault/README.md
-cd ~/papers-vault && git add . && git commit -m 'init' && git push origin main"
+git clone git@github-papers-vault:YOUR_USERNAME/papers-vault.git ~/claude-project/papers-vault
+mkdir -p ~/claude-project/papers-vault/papers ~/claude-project/papers-vault/digests
+echo '# papers-vault' > ~/claude-project/papers-vault/README.md
+cd ~/claude-project/papers-vault && git add . && git commit -m 'init' && git push origin main"
 ```
 
 ### Local Obsidian setup
 
 1. Clone `papers-vault` to your local machine:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/papers-vault.git ~/papers-vault
+   git clone https://github.com/YOUR_USERNAME/papers-vault.git ~/claude-project/papers-vault
    ```
-2. Open Obsidian → **Open folder as vault** → select `~/papers-vault`
+2. Open Obsidian → **Open folder as vault** → select `~/claude-project/papers-vault`
 3. Install the **Obsidian Git** plugin (community plugins)
 4. Configure Obsidian Git:
    - Pull on vault open: **yes**
@@ -284,7 +284,7 @@ Trigger Claude Code manually to test the full pipeline:
 ```bash
 ssh OCI-Desktop "
 CLAUDE=/home/ubuntu/.cache/claude/staging/REPLACE/claude
-cd ~/rizhi
+cd ~/claude-project/rizhi
 \$CLAUDE --print < agent/CLAUDE.md
 "
 ```
@@ -293,7 +293,7 @@ This will:
 1. Fetch papers from arxiv
 2. Claude scores each one against your interest profile
 3. Write `results/YYYY-MM-DD.json`
-4. Write Obsidian vault notes to `~/papers-vault/`
+4. Write Obsidian vault notes to `~/claude-project/papers-vault/`
 5. Git commit and push the vault
 6. Trigger push notification to your phone (if PWA is set up)
 
@@ -327,7 +327,7 @@ The app icon appears on your home screen. Push notifications will arrive each mo
 git add . && git commit -m "your changes" && git push origin main
 
 # OCI: pull and restart
-ssh OCI-Desktop "cd ~/rizhi && git pull && sudo systemctl restart rizhi"
+ssh OCI-Desktop "cd ~/claude-project/rizhi && git pull && sudo systemctl restart rizhi"
 ```
 
 ### Update Claude binary path after Claude Code upgrades

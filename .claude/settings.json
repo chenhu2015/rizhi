@@ -3,15 +3,15 @@
     "allow": [
       "Bash(~/.venv/bin/python -m scanner.search *)",
       "Bash(curl -s -X POST http://localhost:8000/internal/notify)",
-      "Bash(git -C ~/papers-vault pull --rebase origin main)",
-      "Bash(git -C ~/papers-vault add papers/ digests/)",
-      "Bash(git -C ~/papers-vault commit -m *)",
-      "Bash(git -C ~/papers-vault push origin main)",
-      "Bash(mkdir -p ~/papers-vault/papers/*)",
-      "Bash(mkdir -p ~/papers-vault/digests)",
-      "Write(~/rizhi/results/*)",
-      "Write(~/papers-vault/papers/*)",
-      "Write(~/papers-vault/digests/*)"
+      "Bash(git -C /home/ubuntu/claude-project/papers-vault pull --rebase origin main)",
+      "Bash(git -C /home/ubuntu/claude-project/papers-vault add papers/ digests/)",
+      "Bash(git -C /home/ubuntu/claude-project/papers-vault commit -m *)",
+      "Bash(git -C /home/ubuntu/claude-project/papers-vault push origin main)",
+      "Bash(mkdir -p /home/ubuntu/claude-project/papers-vault/**)",
+      "Read(/home/ubuntu/claude-project/rizhi/scanner/interest_profile.yaml)",
+      "Read(/home/ubuntu/claude-project/papers-vault/**)",
+      "Write(/home/ubuntu/claude-project/rizhi/results/**)",
+      "Write(/home/ubuntu/claude-project/papers-vault/**)"
     ]
   }
 }

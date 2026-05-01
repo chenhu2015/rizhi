@@ -53,7 +53,9 @@ rizhi/
 - **Host:** OCI-Desktop (SSH alias configured)
 - **OS:** Ubuntu 22.04 LTS
 - **User:** ubuntu
-- **Claude Code:** installed at `~/.cache/claude/staging/.../claude`
+- **Claude Code:** installed at `~/.local/bin/claude`
+- **Project root:** `~/claude-project/rizhi`
+- **papers-vault:** `~/claude-project/papers-vault`
 
 ## Key Config Files
 

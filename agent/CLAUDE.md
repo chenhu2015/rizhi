@@ -12,17 +12,17 @@ Before searching, understand the current state of the user's research.
 
 **Read the interest profile:**
 ```
-~/rizhi/scanner/interest_profile.yaml
+~/claude-project/rizhi/scanner/interest_profile.yaml
 ```
 
 **Scan recent vault digests** (last 7 days, skip if directory is empty):
 ```
-~/papers-vault/digests/
+~/claude-project/papers-vault/digests/
 ```
 
 **Skim recent vault notes for user annotations** — look specifically for content the user has written under `## My Thoughts` in any paper notes:
 ```
-~/papers-vault/papers/
+~/claude-project/papers-vault/papers/
 ```
 
 Based on what you find, answer these questions mentally before moving on:
@@ -50,7 +50,7 @@ Rules for good queries:
 For each query in your plan, run:
 
 ```bash
-cd ~/rizhi
+cd ~/claude-project/rizhi
 ~/.venv/bin/python -m scanner.search "YOUR QUERY HERE" --max 30
 ```
 
@@ -88,8 +88,8 @@ Deduplicate: if the same paper appeared in multiple search results, keep it once
 Create two files with identical content — today's dated file and `latest.json`.
 
 **File paths:**
-- `~/rizhi/results/YYYY-MM-DD.json`
-- `~/rizhi/results/latest.json`
+- `~/claude-project/rizhi/results/YYYY-MM-DD.json`
+- `~/claude-project/rizhi/results/latest.json`
 
 **Format** — array of scored papers (only those ≥ min_score), sorted by score descending, capped at `max_papers_per_run` from the interest profile:
 
@@ -117,12 +117,12 @@ If no papers meet the threshold, write `[]` to both files.
 
 For each paper in the results (score ≥ min_score):
 
-**File path:** `~/papers-vault/papers/YYYY/MM/YYYY-MM-DD-<slug>.md`
+**File path:** `~/claude-project/papers-vault/papers/YYYY/MM/YYYY-MM-DD-<slug>.md`
 
 Where `<slug>` is the paper title lowercased, spaces replaced with hyphens, special characters removed, truncated to 60 characters.
 
 ```bash
-mkdir -p ~/papers-vault/papers/YYYY/MM
+mkdir -p ~/claude-project/papers-vault/papers/YYYY/MM
 ```
 
 **Template:**
@@ -162,7 +162,7 @@ status: unread
 
 ## Step 7: Write daily digest note
 
-**File path:** `~/papers-vault/digests/YYYY-MM-DD.md`
+**File path:** `~/claude-project/papers-vault/digests/YYYY-MM-DD.md`
 
 ```markdown
 # Digest: YYYY-MM-DD
@@ -189,7 +189,7 @@ Including the search plan in the digest makes it easy to see over time how your 
 ## Step 8: Commit and push vault
 
 ```bash
-cd ~/papers-vault
+cd ~/claude-project/papers-vault
 git pull --rebase origin main
 git add papers/ digests/
 git commit -m "digest: YYYY-MM-DD (N papers)" || echo "nothing to commit"

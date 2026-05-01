@@ -329,10 +329,10 @@ status: unread
 
 ```
 OCI VM (after each scan)
-    git -C ~/papers-vault pull --rebase origin main   ← pull first to avoid conflict
-    git -C ~/papers-vault add papers/ digests/
-    git -C ~/papers-vault commit -m "digest: 2026-04-29 (3 papers)"
-    git -C ~/papers-vault push origin main
+    git -C ~/claude-project/papers-vault pull --rebase origin main   ← pull first to avoid conflict
+    git -C ~/claude-project/papers-vault add papers/ digests/
+    git -C ~/claude-project/papers-vault commit -m "digest: 2026-04-29 (3 papers)"
+    git -C ~/claude-project/papers-vault push origin main
 
 Local computer (automatic via Obsidian Git plugin)
     on vault open  → git pull

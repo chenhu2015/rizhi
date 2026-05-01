@@ -5,8 +5,8 @@ After=network.target
 [Service]
 Type=simple
 User=ubuntu
-WorkingDirectory=/home/ubuntu/rizhi
-EnvironmentFile=/home/ubuntu/rizhi/.env
+WorkingDirectory=/home/ubuntu/claude-project/rizhi
+EnvironmentFile=/home/ubuntu/claude-project/rizhi/.env
 ExecStart=/home/ubuntu/.venv/bin/uvicorn server.main:app --host 127.0.0.1 --port 8000
 Restart=always
 RestartSec=10
